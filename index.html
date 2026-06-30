@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyGlass Weather</title>
+    <meta name="description" content="Real-time weather conditions, 5-day forecasts, humidity, wind speed and more for any city worldwide." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+<header class="navbar">
+      <div class="navbar-inner">
+
+        <div class="brand">SkyGlass Weather</div>
+
+        <div class="search-area">
+          <div class="search-box" id="search-wrap">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <form id="search-form">
+              <input
+                type="search"
+                id="city-input"
+                placeholder="Search city..."
+                aria-label="Search city"
+                autocomplete="off"
+                required
+              />
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+<main class="content">
+
+<div id="error-message" class="error hidden" role="alert"></div>
+
+<div id="loading-state" class="loading hidden" aria-live="polite">
+        <span class="material-symbols-outlined spin">autorenew</span>
+        <p>Fetching weather data...</p>
+      </div>
+
+<section id="current-card" class="weather-hero" aria-labelledby="location-name">
+        <div class="card current-weather">
+
+<div class="glow" aria-hidden="true"></div>
+
+<div class="city-row">
+            <span class="material-symbols-outlined accent">location_on</span>
+            <h1 id="location-name" class="city-name">--</h1>
+          </div>
+          <p id="updated-text" class="date"></p>
+
+<div class="temp-row">
+            <span id="current-temperature" class="temperature">--</span>
+            <div class="temp-meta">
+              <span class="unit">C</span>
+              <div class="high-low">
+                <span id="temp-high" class="high">--</span>
+                <span id="temp-low" class="low">--</span>
+              </div>
+            </div>
+          </div>
+
+<div class="condition">
+            <span id="current-icon" class="material-symbols-outlined weather-icon">wb_sunny</span>
+            <span id="weather-description" class="weather-label">--</span>
+          </div>
+
+<div class="stats-grid">
+            <div class="stat">
+              <div class="stat-icon">
+                <span class="material-symbols-outlined">humidity_percentage</span>
+              </div>
+              <div>
+                <p class="stat-label">HUMIDITY</p>
+                <p class="stat-value" id="humidity">--</p>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon">
+                <span class="material-symbols-outlined">air</span>
+              </div>
+              <div>
+                <p class="stat-label">WIND</p>
+                <p class="stat-value" id="wind-speed">--</p>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon">
+                <span class="material-symbols-outlined">device_thermostat</span>
+              </div>
+              <div>
+                <p class="stat-label">FEELS LIKE</p>
+                <p class="stat-value" id="feels-like">--</p>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="stat-icon">
+                <span class="material-symbols-outlined">visibility</span>
+              </div>
+              <div>
+                <p class="stat-label">VISIBILITY</p>
+                <p class="stat-value" id="visibility">--</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+<section id="forecast-card" class="forecast" aria-labelledby="forecast-title">
+        <div class="forecast-header">
+          <h2 id="forecast-title" class="section-title">5-Day Forecast</h2>
+        </div>
+        <div class="forecast-list" id="forecast-grid">
+          
+        </div>
+      </section>
+
+<section class="info-grid" aria-label="Additional weather info">
+
+        <div class="card info-card">
+          <div class="info-text">
+            <p class="stat-label">AIR QUALITY</p>
+            <p class="info-value">Good</p>
+            <p class="info-desc">Low risk from air pollution today.</p>
+          </div>
+          <div class="info-badge badge-green" aria-hidden="true">
+            <span class="material-symbols-outlined">check_circle</span>
+          </div>
+        </div>
+
+        <div class="card info-card">
+          <div class="info-text">
+            <p class="stat-label">UV INDEX</p>
+            <p class="info-value" id="uv-value">--</p>
+            <p class="info-desc" id="uv-desc">Checking UV conditions...</p>
+          </div>
+          <div class="info-badge badge-amber" aria-hidden="true">
+            <span class="material-symbols-outlined">light_mode</span>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+<nav class="mobile-nav" aria-label="Navigation">
+      <a href="#current-card" class="nav-item active">
+        <span class="material-symbols-outlined">wb_sunny</span>
+        <span>Forecast</span>
+      </a>
+      <a href="#forecast-card" class="nav-item">
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span>5-Day</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="material-symbols-outlined">air</span>
+        <span>Air</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="material-symbols-outlined">warning</span>
+        <span>Alerts</span>
+      </a>
+    </nav>
+
+<footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-copy">&copy; 2025 SkyGlass Meteorology. Data by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">API Status</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
